@@ -1,3 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vibdark - Archivo Prohibido</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #00ffcc;
+      font-family: 'Courier New', Courier, monospace;
+      overflow: hidden;
+    }
+    .glitch {
+      animation: glitch 1s infinite;
+    }
+    @keyframes glitch {
+      0% { opacity: 1; }
+      50% { opacity: 0.7; transform: translateX(1px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+    .hidden-screen { display: none; }
+    .terminal { white-space: pre-line; }
+    .file:hover { color: #ff0040; cursor: pointer; }
+    img { margin-top: 20px; max-width: 100%; border: 2px solid #00ffcc; }
+  </style>
+</head>
+<body class="p-6">
+
+  <!-- Sonido de fondo -->
+  <audio autoplay loop>
+    <source src="misterio.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
+
+  <!-- Pantalla de acceso -->
+  <div id="loginScreen" class="flex items-center justify-center h-screen">
+    <div class="text-center">
+      <h1 class="text-3xl glitch">[ACCESO RESTRINGIDO]</h1>
+      <p class="mt-4">Ingrese al archivo prohibido de Vibdark</p>
+      <button onclick="acceder()" class="mt-6 bg-green-600 px-4 py-2 rounded hover:bg-green-800">ACCESAR</button>
+    </div>
+  </div>
+
+  <!-- Pantalla principal -->
+  <div id="mainScreen" class="hidden-screen">
+    <div class="terminal">
+      <h2 class="text-2xl mb-4">> directorio: /vibdark/archivos_clasificados</h2>
+      <ul class="space-y-2">
+        <li class="file" onclick="mostrarArchivo('1')">[001] INCIDENTE EN LA ESTACIÓN ECHO</li>
+        <li class="file" onclick="mostrarArchivo('2')">[002] LA ENTIDAD QUE HABLA DESDE LAS PAREDES</li>
+        <li class="file" onclick="mostrarArchivo('3')">[003] TRANSMISIÓN DESDE UN FUTURO COLAPSADO</li>
+      </ul>
+
+      <div id="archivo" class="mt-8 hidden">
+        <h3 id="archivoTitulo" class="text-xl mb-2"></h3>
+        <p id="archivoTexto" class="text-sm"></p>
+        <img id="archivoImagen" src="imagen_misteriosa.jpg" alt="Imagen misteriosa" class="hidden">
+        <button onclick="cerrarArchivo()" class="mt-4 bg-red-600 px-3 py-1 rounded hover:bg-red-800">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function acceder() {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('mainScreen').style.display = 'block';
+    }
+
+    const archivos = {
+      '1': {
+        titulo: '[001] INCIDENTE EN LA ESTACIÓN ECHO',
+        texto: 'Archivo desclasificado sobre la anomalía detectada en la estación orbital ECHO. Tres investigadores desaparecieron tras escuchar un zumbido en frecuencias inaudibles. El experimento fue abortado, pero se cree que algo logró salir.',
+      },
+      '2': {
+        titulo: '[002] LA ENTIDAD QUE HABLA DESDE LAS PAREDES',
+        texto: 'Durante la remodelación de un edificio abandonado, los obreros reportaron voces pidiendo ayuda desde dentro de las paredes. Uno de ellos fue encontrado catatónico, murmurando códigos binarios sin sentido.',
+      },
+      '3': {
+        titulo: '[003] TRANSMISIÓN DESDE UN FUTURO COLAPSADO',
+        texto: 'Un archivo de audio apareció en un servidor antiguo. Analizado con IA, contiene un mensaje de socorro en un dialecto modificado del español. Se sospecha que fue enviado desde una línea de tiempo futura donde la humanidad cayó.',
+      }
+    };
+
+    function mostrarArchivo(id) {
+      document.getElementById('archivo').style.display = 'block';
+      document.getElementById('archivoTitulo').textContent = archivos[id].titulo;
+      document.getElementById('archivoTexto').textContent = archivos[id].texto;
+      document.getElementById('archivoImagen').classList.remove('hidden');
+    }
+
+    function cerrarArchivo() {
+      document.getElementById('archivo').style.display = 'none';
+      document.getElementById('archivoImagen').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
 # MR-Eyes
 La pagina oculta y secreta de MR Eyes. ¿Te atreves a verla?
 <!DOCTYPE html>
